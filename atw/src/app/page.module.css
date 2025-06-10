@@ -3,7 +3,7 @@
   min-height: 100vh;
   /* background-color: #f8f9fa; */
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 .container.visible {
@@ -33,6 +33,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  z-index: 100;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -98,6 +99,8 @@
   flex: 1;
   margin-left: 280px;
   padding: 3rem;
+  transition: margin-left 0.3s ease-in-out;
+  background-color: #ffffff;
 }
 
 .header {
@@ -106,11 +109,16 @@
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #212529;
-  margin-bottom: 0.75rem;
-  letter-spacing: -1.5px;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  font-weight: 400;
 }
 
 .description {
@@ -122,100 +130,80 @@
 }
 
 .searchContainer {
+  margin-top: 2rem;
+  width: 100%;
   max-width: 500px;
-  margin: 0 auto;
-  position: relative;
 }
 
 .searchInput {
   width: 100%;
-  padding: 1rem 1.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 50px;
+  padding: 1rem;
   font-size: 1rem;
-  color: #495057;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 50px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .searchInput:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+  border-color: #0070f3;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.25);
 }
 
 .countriesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
 }
 
 .countryCard {
-  background: #fff;
+  background: white;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: cardFadeIn 0.5s ease-out forwards;
-}
-
-@keyframes cardFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .countryCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .countryImage {
+  position: relative;
   width: 100%;
   height: 200px;
-  position: relative;
-  overflow: hidden;
 }
 
 .countryImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease-in-out;
-}
-
-.countryCard:hover .countryImage img {
-  transform: scale(1.05);
 }
 
 .regionTag {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 0.3rem 0.8rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  backdrop-filter: blur(5px);
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
 }
 
 .countryInfo {
   padding: 1.5rem;
+  text-align: center;
 }
 
 .countryInfo h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #212529;
-  margin-bottom: 0.5rem;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .countryInfo p {
@@ -260,32 +248,125 @@
 }
 
 .exploreButton:hover {
-  background: #0056b3;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-  transform: translateY(-2px);
+  background-color: #0056b3;
+}
+
+.menuButton {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 101;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+.globeContainer {
+  position: absolute;
+  bottom: -25vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50vh;
+  height: 50vh;
+  z-index: 2;
+  filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.5));
+}
+
+.hero {
+  position: relative;
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3');
+  background-size: cover;
+  background-position: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section {
+  padding: 6rem 2rem 2rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(-100%);
   }
+
+  .sidebar.sidebarOpen {
+    transform: translateX(0);
+  }
+
   .main {
     margin-left: 0;
+  }
+
+  .menuButton {
+    display: block;
   }
 }
 
 @media (max-width: 768px) {
   .main {
-    padding: 2rem;
+    padding: 1.5rem;
+    padding-top: 5rem; /* Pour ne pas être sous le bouton menu */
   }
+
   .title {
     font-size: 2.5rem;
   }
+
   .description {
     font-size: 1rem;
   }
+
   .countriesGrid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 

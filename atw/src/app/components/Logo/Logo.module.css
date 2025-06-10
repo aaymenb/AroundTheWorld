@@ -1,0 +1,19 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem; /* Centrer un peu */
+}
+
+.logoSvg {
+  width: 45px;
+  height: 45px;
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.5px;
+} 
