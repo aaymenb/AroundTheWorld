@@ -61,27 +61,22 @@ export default function HomePageNew({ geoJson }: { geoJson: any }) {
               </button>
             ))}
           </nav>
+
+          <div className={styles.countryList}>
+            <h2 className={styles.sectionTitle}>Destinations</h2>
+            {filteredCountries.map(country => (
+              <button key={country.name} className={styles.countryButton} onClick={() => handleOpenModal(country)}>
+                {country.name}
+              </button>
+            ))}
+          </div>
         </aside>
 
         <main className={styles.mainContent}>
           <div className={styles.topBar}>
-            <button className={styles.iconButton}><FaSearch /></button>
-            <button className={styles.iconButton}><FaUser /></button>
           </div>
           <div className={styles.mapContainer}>
             <MapChart geoJson={geoJson} onCountryClick={handleMapCountryClick} />
-          </div>
-          
-          <h2 className={styles.sectionTitle}>Destinations</h2>
-          <div className={styles.destinationsGrid}>
-            {filteredCountries.slice(0, 4).map(country => (
-              <div key={country.name} className={styles.destinationCard} onClick={() => handleOpenModal(country)}>
-                <div className={styles.destinationIcon}>
-                  {destinationIcons[country.name] || '🌍'}
-                </div>
-                <p className={styles.destinationName}>{country.name}</p>
-              </div>
-            ))}
           </div>
         </main>
 

@@ -12,7 +12,7 @@ import styles from './MapChart.module.css';
 const MapChart = ({ geoJson, onCountryClick }: { geoJson: any, onCountryClick: (countryName: string) => void }) => {
   return (
     <div className={styles.mapContainer}>
-      <ComposableMap projectionConfig={{ scale: 205 }}>
+      <ComposableMap projectionConfig={{ scale: 250 }}>
         <ZoomableGroup center={[0, 20]} maxZoom={6}>
           <Geographies geography={geoJson}>
             {({ geographies }) =>

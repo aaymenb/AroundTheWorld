@@ -16,12 +16,6 @@ export default function Header() {
         </Link>
       </div>
       <nav className={styles.nav}>
-        <Link href="/login" passHref>
-          <span className={styles.navLink}>Connexion</span>
-        </Link>
-        <Link href="/signup" passHref>
-          <span className={`${styles.navLink} ${styles.signupButton}`}>Inscription</span>
-        </Link>
       </nav>
     </header>
   );
