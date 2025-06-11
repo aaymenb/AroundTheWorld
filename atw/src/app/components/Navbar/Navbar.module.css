@@ -1,0 +1,37 @@
+/* Navbar.module.css */
+.navbar {
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0e6d8;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navButton {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e67e22;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .navButton:hover {
+    background-color: #fffaf0;
+    color: #d95f02;
+  }
+  
+  .navButton.active {
+    background-color: #ff8c42;
+    color: white;
+    box-shadow: 0 4px 14px rgba(255, 140, 66, 0.4);
+  }

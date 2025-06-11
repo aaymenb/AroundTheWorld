@@ -18,6 +18,7 @@ export interface Country {
     lat: number;
     lng: number;
   };
+  altNames?: string[];
 }
 
 export const countries: Country[] = [
@@ -165,6 +166,7 @@ export const countries: Country[] = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
     region: "Amériques",
     coordinates: { lat: 37.0902, lng: -95.7129 },
+    altNames: ["United States of America"],
     highlights: [
       {
         name: "New York",

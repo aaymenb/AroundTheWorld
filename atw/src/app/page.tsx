@@ -1,14 +1,20 @@
-import fs from 'fs';
-import path from 'path';
-import HomePage from '@/app/components/HomePage/HomePage';
+import HomePageNew from './components/HomePage/HomePageNew';
+import { headers } from 'next/headers';
 
 async function getGeoJsonData() {
-  const geoJsonPath = path.resolve('./public/ne_110m_admin_0_countries.geojson');
-  const geoJsonData = fs.readFileSync(geoJsonPath, 'utf-8');
-  return JSON.parse(geoJsonData);
+  const headersList = headers();
+  const host = headersList.get('host') || "";
+  const protocol = host.startsWith('localhost') ? 'http' : 'https';
+  const url = `${protocol}://${host}/ne_110m_admin_0_countries.geojson`;
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch geoJSON from ${url}`);
+  }
+  return res.json();
 }
 
 export default async function Home() {
   const geoJson = await getGeoJsonData();
-  return <HomePage geoJson={geoJson} />;
+  return <HomePageNew geoJson={geoJson} />;
 }
